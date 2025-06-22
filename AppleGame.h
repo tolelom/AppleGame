@@ -19,7 +19,7 @@ public:
 
 private:
     std::vector<std::vector<int> > board;
-    std::unordered_map<std::bitset<64>, int> memo;
+    std::unordered_map<std::bitset<100>, int> memo;
 
     long long searchNumber;
     long long dpNumber;
@@ -27,17 +27,15 @@ private:
     int cols;
     int rows;
 
-    void PrintBoard(const std::vector<std::vector<int> >& board);
+    void PrintBoard(std::vector<std::vector<int> > &board);
 
-    int Solve(std::bitset<64> state);
+    int Solve(std::bitset<100> state);
 
-    int square(int y1, int x1, int y2, int x2, std::bitset<64> state);
+    int square(int y1, int x1, int y2, int x2, std::bitset<100> state) const;
 
-    std::pair<std::bitset<64>, int> remove(int y1, int x1, int y2, int x2, std::bitset<64> state);
+    std::pair<std::bitset<100>, int> remove(int y1, int x1, int y2, int x2, std::bitset<100> state) const;
 
-    int calculate(int y1, int x1, int y2, int x2, std::bitset<64> state);
-
-    std::bitset<64> stateToMask(const std::vector<std::vector<int> >& board);
+    int calculate(int y1, int x1, int y2, int x2, std::bitset<100> state);
 };
 
 
