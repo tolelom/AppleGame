@@ -97,8 +97,16 @@ int main() {
         {5, 5, 5, 5, 5, 5}
     };
 
+    vector<vector<int> > board10 = {
+        {5, 5, 5, 5, 5},
+        {5, 5, 5, 5, 5},
+        {5, 5, 5, 5, 5},
+        {5, 5, 5, 5, 5},
+        {5, 5, 5, 5, 5},
+    };
+
     AppleGame apple_game;
-    apple_game.InitBoard(board3);
+    apple_game.InitBoard(board10);
 
     auto start = std::chrono::high_resolution_clock::now();
     apple_game.Run();

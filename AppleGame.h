@@ -20,6 +20,7 @@ public:
 private:
     std::vector<std::vector<int> > board;
     std::unordered_map<std::bitset<100>, int> memo;
+    std:: vector<int> flat_board; // 1D 배열로 변경
 
     long long searchNumber;
     long long dpNumber;
