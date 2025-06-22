@@ -1,0 +1,3 @@
+C:/projects/apple_game_project/cmake-build-debug/CMakeFiles/apple_game_project.dir
+C:/projects/apple_game_project/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/projects/apple_game_project/cmake-build-debug/CMakeFiles/rebuild_cache.dir
