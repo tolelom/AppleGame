@@ -30,20 +30,19 @@ void AppleGame::Run() {
 }
 
 int AppleGame::Solve(const bitset<100>& state) {
-    if (searchNumber % 100'000 == 0)
-        cout << "searchNumber: " << searchNumber << endl;
-    searchNumber++;
-
     if (memo.contains(state)) {
         dpNumber++;
         return memo[state];
     }
 
+    searchNumber++;
+    if (searchNumber % 100'000 == 0)
+        cout << "searchNumber: " << searchNumber << endl;
 
     int result = 0;
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            result = max(result, calculate(i, j, i, j, state));
+            result = max(result, calculate(i, j, i, j, state, true));
         }
     }
 
@@ -52,7 +51,7 @@ int AppleGame::Solve(const bitset<100>& state) {
     return result;
 }
 
-int AppleGame::calculate(int y1, int x1, int y2, int x2, const bitset<100>& state) {
+int AppleGame::calculate(int y1, int x1, int y2, int x2, const bitset<100>& state, bool direction) {
     int s = square(y1, x1, y2, x2, state);
     if (s > 10) return 0;
 
@@ -64,13 +63,13 @@ int AppleGame::calculate(int y1, int x1, int y2, int x2, const bitset<100>& stat
 
     int result = 0;
     // case 1 (아래로 확장)
-    if (y2 + 1 < board.size()) {
-        result = max(result, calculate(y1, x1, y2 + 1, x2, state));
+    if (y2 + 1 < board.size() && direction) {
+        result = max(result, calculate(y1, x1, y2 + 1, x2, state, true));
     }
 
     // case 2 (오른쪽으로 확장)
     if (x2 + 1 < board[0].size()) {
-        result = max(result, calculate(y1, x1, y2, x2 + 1, state));
+        result = max(result, calculate(y1, x1, y2, x2 + 1, state, false));
     }
     return result;
 }
@@ -90,8 +89,8 @@ int AppleGame::square(int y1, int x1, int y2, int x2, const bitset<100>& state) 
 pair<bitset<100>, int> AppleGame::remove(int y1, int x1, int y2, int x2, const bitset<100>& state) const {
     bitset<100> resultState = state;
     int count = 0;
-    for (int i = min(y1, y2); i <= max(y1, y2); ++i) {
-        for (int j = min(x1, x2); j <= max(x1, x2); ++j) {
+    for (int i = y1; i <= y2; ++i) {
+        for (int j = x1; j <= x2; ++j) {
             if (resultState.test(i * cols + j)) continue;
             resultState.set(i * cols + j);
             count++;

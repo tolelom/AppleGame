@@ -35,7 +35,7 @@ private:
 
     std::pair<std::bitset<100>, int> remove(int y1, int x1, int y2, int x2, const std::bitset<100>& state) const;
 
-    int calculate(int y1, int x1, int y2, int x2, const std::bitset<100>& state);
+    int calculate(int y1, int x1, int y2, int x2, const std::bitset<100>& state, bool direction);
 };
 
 
