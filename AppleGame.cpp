@@ -75,23 +75,23 @@ int AppleGame::calculate(int y1, int x1, int y2, int x2, const bitset<100>& stat
 }
 
 
-int AppleGame::square(int y1, int x1, int y2, int x2, const bitset<100>& state) const {
+int AppleGame::square(int& y1, int& x1, int& y2, int& x2, const bitset<100>& state) const {
     int result = 0;
     for (int i = y1; i <= y2; ++i) {
         for (int j = x1; j <= x2; ++j) {
-            if (!state.test(i * cols + j))
+            if (!state[i * cols + j])
                 result += board[i][j];
         }
     }
     return result;
 }
 
-pair<bitset<100>, int> AppleGame::remove(int y1, int x1, int y2, int x2, const bitset<100>& state) const {
+pair<bitset<100>, int> AppleGame::remove(int& y1, int& x1, int& y2, int& x2, const bitset<100>& state) const {
     bitset<100> resultState = state;
     int count = 0;
     for (int i = y1; i <= y2; ++i) {
         for (int j = x1; j <= x2; ++j) {
-            if (resultState.test(i * cols + j)) continue;
+            if (resultState[i * cols + j]) continue;
             resultState.set(i * cols + j);
             count++;
         }
