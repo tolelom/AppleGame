@@ -29,13 +29,13 @@ private:
 
     void PrintBoard(std::vector<std::vector<int> > &board);
 
-    int Solve(std::bitset<100> state);
+    int Solve(const std::bitset<100>& state);
 
-    int square(int y1, int x1, int y2, int x2, std::bitset<100> state) const;
+    int square(int y1, int x1, int y2, int x2, const std::bitset<100>& state) const;
 
-    std::pair<std::bitset<100>, int> remove(int y1, int x1, int y2, int x2, std::bitset<100> state) const;
+    std::pair<std::bitset<100>, int> remove(int y1, int x1, int y2, int x2, const std::bitset<100>& state) const;
 
-    int calculate(int y1, int x1, int y2, int x2, std::bitset<100> state);
+    int calculate(int y1, int x1, int y2, int x2, const std::bitset<100>& state);
 };
 
 

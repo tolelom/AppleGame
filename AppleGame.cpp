@@ -29,7 +29,7 @@ void AppleGame::Run() {
     cout << "result: " << result << " search number: " << searchNumber << " dp number: " << dpNumber << endl;
 }
 
-int AppleGame::Solve(bitset<100> state) {
+int AppleGame::Solve(const bitset<100>& state) {
     if (searchNumber % 100'000 == 0)
         cout << "searchNumber: " << searchNumber << endl;
     searchNumber++;
@@ -52,7 +52,7 @@ int AppleGame::Solve(bitset<100> state) {
     return result;
 }
 
-int AppleGame::calculate(int y1, int x1, int y2, int x2, bitset<100> state) {
+int AppleGame::calculate(int y1, int x1, int y2, int x2, const bitset<100>& state) {
     int s = square(y1, x1, y2, x2, state);
     if (s > 10) return 0;
 
@@ -76,10 +76,10 @@ int AppleGame::calculate(int y1, int x1, int y2, int x2, bitset<100> state) {
 }
 
 
-int AppleGame::square(int y1, int x1, int y2, int x2, bitset<100> state) const {
+int AppleGame::square(int y1, int x1, int y2, int x2, const bitset<100>& state) const {
     int result = 0;
-    for (int i = min(y1, y2); i <= max(y1, y2); ++i) {
-        for (int j = min(x1, x2); j <= max(x1, x2); ++j) {
+    for (int i = y1; i <= y2; ++i) {
+        for (int j = x1; j <= x2; ++j) {
             if (!state.test(i * cols + j))
                 result += board[i][j];
         }
@@ -87,7 +87,7 @@ int AppleGame::square(int y1, int x1, int y2, int x2, bitset<100> state) const {
     return result;
 }
 
-pair<bitset<100>, int> AppleGame::remove(int y1, int x1, int y2, int x2, bitset<100> state) const {
+pair<bitset<100>, int> AppleGame::remove(int y1, int x1, int y2, int x2, const bitset<100>& state) const {
     bitset<100> resultState = state;
     int count = 0;
     for (int i = min(y1, y2); i <= max(y1, y2); ++i) {
